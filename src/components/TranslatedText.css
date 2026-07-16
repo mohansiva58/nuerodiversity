@@ -1,0 +1,127 @@
+/* TranslatedText Component Styles */
+
+.translated-text {
+    display: inline;
+}
+
+.translated-text--loading {
+    display: inline-block;
+    min-height: 1em;
+}
+
+.translated-text--error {
+    color: #dc2626;
+    font-style: italic;
+}
+
+/* Skeleton Loader */
+.translated-text__skeleton {
+    display: inline-block;
+    height: 1em;
+    background: linear-gradient(90deg,
+            #f3f4f6 0%,
+            #e5e7eb 50%,
+            #f3f4f6 100%);
+    background-size: 200% 100%;
+    border-radius: 0.25rem;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* TranslatedHTML Styles */
+.translated-html {
+    display: block;
+}
+
+.translated-html--loading {
+    min-height: 3em;
+}
+
+.translated-html__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.translated-html__skeleton::before,
+.translated-html__skeleton::after {
+    content: '';
+    display: block;
+    height: 1em;
+    background: linear-gradient(90deg,
+            #f3f4f6 0%,
+            #e5e7eb 50%,
+            #f3f4f6 100%);
+    background-size: 200% 100%;
+    border-radius: 0.25rem;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.translated-html__skeleton::before {
+    width: 100%;
+}
+
+.translated-html__skeleton::after {
+    width: 75%;
+    animation-delay: 0.2s;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+
+    .translated-text__skeleton,
+    .translated-html__skeleton::before,
+    .translated-html__skeleton::after {
+        background: linear-gradient(90deg,
+                #374151 0%,
+                #4b5563 50%,
+                #374151 100%);
+        background-size: 200% 100%;
+    }
+
+    .translated-text--error {
+        color: #f87171;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .translated-text__skeleton,
+    .translated-html__skeleton::before,
+    .translated-html__skeleton::after {
+        animation: none;
+        background: #e5e7eb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+        .translated-text__skeleton,
+        .translated-html__skeleton::before,
+        .translated-html__skeleton::after {
+            background: #4b5563;
+        }
+    }
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

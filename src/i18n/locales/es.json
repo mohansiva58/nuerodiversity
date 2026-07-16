@@ -1,0 +1,267 @@
+{
+    "nav": {
+        "home": "Inicio",
+        "learning": "Aprendizaje",
+        "games": "Juegos",
+        "daily": "Diario",
+        "community": "Comunidad",
+        "assessment": "Evaluación",
+        "blog": "Blog",
+        "about": "Acerca de",
+        "profile": "Perfil",
+        "settings": "Configuración",
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión"
+    },
+    "buttons": {
+        "submit": "Enviar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "close": "Cerrar",
+        "back": "Atrás",
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "confirm": "Confirmar",
+        "download": "Descargar",
+        "upload": "Subir",
+        "search": "Buscar",
+        "filter": "Filtrar",
+        "reset": "Restablecer",
+        "apply": "Aplicar",
+        "viewMore": "Ver más",
+        "learnMore": "Saber más",
+        "getStarted": "Comenzar",
+        "tryNow": "Probar ahora"
+    },
+    "forms": {
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "username": "Nombre de usuario",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "phoneNumber": "Número de teléfono",
+        "message": "Mensaje",
+        "subject": "Asunto",
+        "required": "Este campo es obligatorio",
+        "invalidEmail": "Dirección de correo electrónico no válida",
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "minLength": "Se requieren mínimo {{count}} caracteres",
+        "maxLength": "Se permiten máximo {{count}} caracteres"
+    },
+    "alerts": {
+        "success": "¡Éxito!",
+        "error": "¡Error!",
+        "warning": "¡Advertencia!",
+        "info": "Información",
+        "loading": "Cargando...",
+        "saving": "Guardando...",
+        "deleting": "Eliminando...",
+        "uploading": "Subiendo...",
+        "processing": "Procesando...",
+        "pleaseWait": "Por favor espere..."
+    },
+    "system": {
+        "pageNotFound": "Página no encontrada",
+        "goHome": "Ir al inicio",
+        "somethingWentWrong": "Algo salió mal",
+        "tryAgain": "Intentar de nuevo",
+        "noResults": "No se encontraron resultados",
+        "noData": "No hay datos disponibles",
+        "offline": "Estás desconectado",
+        "online": "Estás conectado",
+        "networkError": "Ocurrió un error de red",
+        "serverError": "Ocurrió un error del servidor",
+        "unauthorized": "Acceso no autorizado",
+        "forbidden": "Acceso prohibido"
+    },
+    "accessibility": {
+        "skipToContent": "Saltar al contenido principal",
+        "openMenu": "Abrir menú",
+        "closeMenu": "Cerrar menú",
+        "toggleTheme": "Cambiar tema",
+        "changeLanguage": "Cambiar idioma",
+        "playAudio": "Reproducir audio",
+        "pauseAudio": "Pausar audio",
+        "stopAudio": "Detener audio",
+        "increaseTextSize": "Aumentar tamaño del texto",
+        "decreaseTextSize": "Disminuir tamaño del texto",
+        "highContrast": "Modo de alto contraste",
+        "screenReader": "Modo de lector de pantalla"
+    },
+    "games": {
+        "hero": {
+            "title": "¡Mejora tu Cerebro!",
+            "subtitle": "¡Embárcate en una aventura cognitiva épica! Completa desafíos, gana logros y sube en las tablas de clasificación mientras aumentas tu poder cerebral."
+        },
+        "stats": {
+            "brainGames": "Juegos Cerebrales",
+            "activePlayers": "Jugadores Activos",
+            "gameRecords": "Récords de Juego"
+        },
+        "buttons": {
+            "startJourney": "Comienza tu Viaje",
+            "viewLeaderboard": "Ver Tabla de Clasificación",
+            "play": "JUGAR"
+        },
+        "common": {
+            "submitScore": "Enviar puntuación",
+            "resetScore": "Restablecer puntuación",
+            "scoreLabel": "Puntuación: {{score}}"
+        },
+        "categories": {
+            "all": "Todos los Juegos",
+            "memory": "Memoria",
+            "puzzle": "Rompecabezas",
+            "brain": "Entrenamiento Cerebral",
+            "logic": "Lógica",
+            "skill": "Habilidad",
+            "social": "Social"
+        },
+        "gamesAvailable": "¡te esperan desafíos épicos!",
+        "yourProgress": "Tu Progreso",
+        "level": "Nivel",
+        "achievements": {
+            "title": "Tus Logros",
+            "noAchievements": "Aún no hay logros. ¡Empieza a jugar para desbloquearlos!"
+        },
+        "gameDetails": {
+            "duration": "5-10 min"
+        },
+        "emotionMatching": {
+            "title": "Emparejamiento de Emociones",
+            "question": "¿Qué emoción es esta?",
+            "emotions": {
+                "Happy": "Feliz",
+                "Sad": "Triste",
+                "Angry": "Enojado",
+                "Scared": "Asustado"
+            },
+            "correct": "✅ ¡Correcto! ¡Bien hecho! 🎉",
+            "incorrect": "❌ ¡Inténtalo de nuevo! 😕",
+            "score": "Puntuación: {{score}}",
+            "newEmotion": "Nueva Emoción 🔄"
+        },
+        "focusTrainer": {
+            "title": "Entrenador de Enfoque",
+            "memorize": "Memoriza este número:",
+            "timer": "Tienes {{seconds}} segundos.",
+            "inputPlaceholder": "Introduce el número...",
+            "submit": "Enviar",
+            "correct": "¡Correcto! 🎯",
+            "incorrect": "¡Inténtalo de nuevo! ❌"
+        },
+        "patternRecognition": {
+            "title": "Desafío de Patrones Cósmicos",
+            "instruction": "¡Empareja la secuencia celestial!",
+            "score": "Puntuación: {{score}}",
+            "correct": "¡Bien Hecho! ✅",
+            "incorrect": "¡Incorrecto! Inténtalo de Nuevo 🔄"
+        },
+        "speedReading": {
+            "title": "Lectura Rápida",
+            "startReading": "Empezar a Leer",
+            "finishedReading": "Lectura Terminada",
+            "clickToStart": "Haz clic en \"Empezar a Leer\" para comenzar",
+            "readingTime": "Tiempo de lectura: {{time}}",
+            "time": "Tiempo: {{time}}",
+            "reportTitle": "Informe de Análisis Final",
+            "reportTime": "📊 **Tiempo de Lectura**: {{time}}",
+            "reportWpm": "📝 **Palabras Por Minuto (PPM)**: {{wpm}}",
+            "analysis": {
+                "fast": "Lectura Rápida: Estás procesando la información rápidamente. Esto es típico de individuos con fuerte fluidez, pero puede verse en individuos neurodiversos que prosperan en actividades de ritmo rápido.",
+                "average": "Lectura Promedio: Tu velocidad de lectura está en el rango normal. Si tienes TDAH o dislexia leve, este ritmo aún puede indicar buena comprensión y enfoque.",
+                "slow": "Lectura Lenta: Esto sugiere una necesidad de más tiempo con el texto. Si tienes dislexia o dificultades de atención, es posible que tardes más en leer y procesar cada palabra.",
+                "verySlow": "Lectura Muy Lenta: Puedes tener problemas con la atención o la decodificación. Los individuos con TDAH o dislexia a menudo leen más despacio, tomando tiempo extra para comprender el texto."
+            }
+        },
+        "wordPuzzle": {
+            "title": "Rompecabezas de Palabras",
+            "hint": "Pista: {{hint}}",
+            "placeholder": "Tu respuesta...",
+            "submit": "Enviar Respuesta",
+            "gameOver": "¡Juego Terminado!",
+            "completed": "Completaste las 5 preguntas.",
+            "finalResults": "Resultados Finales:",
+            "wrongAnswers": "Respuestas Incorrectas:",
+            "noWrongAnswers": "No hay respuestas incorrectas.",
+            "word": "Palabra: {{word}}",
+            "yourAnswer": "Tu Respuesta: {{answer}}",
+            "analysis": {
+                "summary": "Tiempo Total: {{totalTime}}s (Promedio por pregunta: {{avgTime}}s)\nPuntuación: {{score}}/5\nVelocidad: {{speed}}",
+                "speed": {
+                    "fast": "Rápida",
+                    "average": "Media",
+                    "slow": "Lenta"
+                },
+                "neurodivergent": "Posibles indicadores de neurodivergencia: Procesamiento más lento y dificultad para recordar, posiblemente relacionado con problemas de atención o memoria.",
+                "normal": "Rango de rendimiento normal. No hay indicadores de neurodivergencia basados en tiempo y precisión."
+            }
+        },
+        "memoryMatch": {
+            "title": "Emparejamiento de Memoria",
+            "score": "Puntuación: {{score}} coincidencias",
+            "won": "¡Felicidades! ¡Ganaste!",
+            "analysis": {
+                "great": "¡Gran trabajo! Tienes excelente memoria y velocidad de recuperación rápida.",
+                "good": "¡Buen rendimiento! Tienes un buen entendimiento, pero un poco de mejora en la velocidad de recuperación podría ayudar.",
+                "practice": "Es posible que necesites más práctica. Considera trabajar en mejorar la velocidad de recuperación y el enfoque.",
+                "stats": "Tiempo Total: {{time}} segundos\\nVelocidad: {{speed}}\\nCoincidencias: {{matches}}/6\\nPuntuación Final: {{finalScore}}\\n\\n"
+            }
+        },
+        "handDraw": {
+            "title": "Trazador de Dibujo a Mano",
+            "instruction": "¡Traza las letras siguiendo las líneas punteadas azules!",
+            "currentLetter": "Letra Actual",
+            "accuracy": "Precisión",
+            "progress": "Progreso",
+            "readyTitle": "¿Listo para Practicar?",
+            "startTracing": "Empezar a Trazar",
+            "complete": "¡Completo!",
+            "averageAccuracy": "Precisión Promedio: {{accuracy}}%",
+            "practiceAgain": "Practicar de Nuevo",
+            "clear": "Borrar",
+            "nextLetter": "Siguiente Letra",
+            "guide": "Sigue las líneas punteadas azules para trazar cada letra. Comienza desde el punto azul más grande y sigue el camino. ¡Tu precisión se calcula en tiempo real!",
+            "exit": "Presiona Esc o haz clic en el botón ✕ para salir de pantalla completa",
+            "exitMobile": "Toca el botón ✕ para salir de pantalla completa"
+        },
+        "scooped": {
+            "title": "SCOOP'D",
+            "instruction": "¡Atrapa las letras que caen y coinciden con la letra objetivo!",
+            "score": "Puntuación",
+            "lives": "Vidas",
+            "target": "Objetivo",
+            "readyTitle": "¿Listo para Jugar?",
+            "controlsHand": "¡Mueve tu mano frente a la cámara para controlar el cubo!",
+            "controlsMouse": "¡Mueve tu ratón para controlar el cubo y atrapar las letras objetivo!",
+            "cameraLoading": "Iniciando cámara...",
+            "disableHand": "Desactivar Seguimiento de Mano",
+            "enableHand": "Activar Seguimiento de Mano",
+            "startGame": "Empezar Juego",
+            "paused": "Juego Pausado",
+            "resume": "Reanudar",
+            "gameOver": "¡Juego Terminado!",
+            "finalScore": "Puntuación Final: {{score}}",
+            "playAgain": "Jugar de Nuevo",
+            "pause": "Pausa",
+            "reset": "Reiniciar",
+            "disableCamera": "Desactivar Cámara",
+            "enableCamera": "Activar Cámara",
+            "guideHand": "Mueve tu mano izquierda y derecha frente a la cámara para controlar el cubo. ¡Atrapa solo las letras que coinciden con la letra objetivo!",
+            "guideMouse": "Mueve tu ratón izquierda y derecha para controlar el cubo. ¡Atrapa solo las letras que coinciden con la letra objetivo mostrada en el cubo. ¡Las capturas incorrectas te costarán una vida!",
+            "exit": "Presiona Esc o haz clic en el botón ✕ para salir de pantalla completa"
+        }
+    },
+    "language": {
+        "selectLanguage": "Seleccionar idioma",
+        "currentLanguage": "Idioma actual",
+        "changeLanguage": "Cambiar idioma",
+        "translating": "Traduciendo...",
+        "translationFailed": "La traducción falló",
+        "autoTranslate": "Traducir automáticamente el contenido",
+        "originalLanguage": "Mostrar idioma original"
+    }
+}

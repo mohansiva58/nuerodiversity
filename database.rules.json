@@ -1,0 +1,60 @@
+{
+  "rules": {
+    "posts": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["timestamp"],
+      "$postId": {
+        "comments": {
+          "$commentId": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+          }
+        }
+      }
+    },
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null"
+      }
+    },
+    "users": {
+      "$user_id": {
+        ".read": "auth != null && auth.uid === $user_id",
+        ".write": "auth != null && auth.uid === $user_id",
+        "displayName": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "backgroundImage": {
+          ".validate": "newData.isString() && newData.val().matches(/^https?:\\/\\/.+/)"
+        },
+        "brightness": {
+          ".validate": "newData.isNumber() && newData.val() >= 10 && newData.val() <= 150"
+        }
+      }
+    },
+    "publicUsers": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$user_id": {
+        ".validate": "newData.hasChildren(['displayName', 'photoURL'])",
+        "displayName": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "photoURL": {
+          ".validate": "newData.isString()"
+        },
+        "bio": {
+          ".validate": "newData.isString()"
+        },
+        "isLoggedIn": {
+          ".validate": "newData.isBoolean()"
+        },
+        "lastActive": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    }
+  }
+}

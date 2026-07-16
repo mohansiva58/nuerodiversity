@@ -1,0 +1,57 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Neurodiversity illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="55%" stop-color="#EDE9FE"/>
+      <stop offset="100%" stop-color="#FCE7F3"/>
+    </linearGradient>
+    <linearGradient id="brain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="900" rx="36" fill="url(#bg)"/>
+
+  <circle cx="180" cy="150" r="80" fill="#DBEAFE"/>
+  <circle cx="1020" cy="190" r="110" fill="#F5D0FE"/>
+  <circle cx="1040" cy="760" r="120" fill="#FECDD3"/>
+  <circle cx="170" cy="760" r="90" fill="#CFFAFE"/>
+
+  <path d="M320 560C320 445.126 413.126 352 528 352H672C786.874 352 880 445.126 880 560V610C880 706.649 801.649 785 705 785H495C398.351 785 320 706.649 320 610V560Z" fill="white" fill-opacity="0.8"/>
+
+  <path d="M470 470C470 430 502 398 542 398C566 398 588 410 600 430C612 410 634 398 658 398C698 398 730 430 730 470C730 512 704 548 664 560C650 564 634 568 620 574C613 577 607 585 600 585C593 585 587 577 580 574C566 568 550 564 536 560C496 548 470 512 470 470Z" fill="url(#brain)" fill-opacity="0.9"/>
+
+  <path d="M558 468C558 453 570 441 585 441C594 441 603 445 608 453C613 445 622 441 631 441C646 441 658 453 658 468C658 484 648 498 633 503C627 505 621 507 615 509C612 510 610 513 608 513C606 513 604 510 601 509C595 507 589 505 583 503C568 498 558 484 558 468Z" fill="url(#heart)"/>
+
+  <g stroke="#334155" stroke-width="5" stroke-linecap="round" opacity="0.75">
+    <path d="M420 500H470"/>
+    <path d="M730 500H780"/>
+    <path d="M470 650H530"/>
+    <path d="M670 650H730"/>
+    <path d="M600 615V680"/>
+  </g>
+
+  <g fill="#0F172A" font-family="Segoe UI, Arial, sans-serif">
+    <text x="600" y="170" font-size="58" font-weight="700" text-anchor="middle">Neurodiversity Matters</text>
+    <text x="600" y="228" font-size="28" text-anchor="middle" opacity="0.8">Different minds. Shared community. Stronger together.</text>
+  </g>
+
+  <g fill="white" fill-opacity="0.85" stroke="#CBD5E1" stroke-width="2">
+    <rect x="170" y="286" width="250" height="78" rx="16"/>
+    <rect x="780" y="306" width="260" height="78" rx="16"/>
+    <rect x="210" y="700" width="270" height="78" rx="16"/>
+    <rect x="760" y="680" width="250" height="78" rx="16"/>
+  </g>
+
+  <g fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">
+    <text x="295" y="336" text-anchor="middle">Inclusion</text>
+    <text x="910" y="356" text-anchor="middle">Empathy</text>
+    <text x="345" y="750" text-anchor="middle">Creativity</text>
+    <text x="885" y="730" text-anchor="middle">Belonging</text>
+  </g>
+</svg>

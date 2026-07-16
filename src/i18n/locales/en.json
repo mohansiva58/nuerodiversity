@@ -1,0 +1,538 @@
+{
+    "nav": {
+        "home": "Home",
+        "learning": "Learning",
+        "games": "Games",
+        "daily": "Daily",
+        "community": "Community",
+        "assessment": "Assessment",
+        "blog": "Blog",
+        "articles": "Articles",
+        "about": "About",
+        "profile": "Profile",
+        "settings": "Settings",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "buttons": {
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "close": "Close",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "confirm": "Confirm",
+        "download": "Download",
+        "upload": "Upload",
+        "search": "Search",
+        "filter": "Filter",
+        "reset": "Reset",
+        "apply": "Apply",
+        "viewMore": "View More",
+        "learnMore": "Learn More",
+        "getStarted": "Get Started",
+        "tryNow": "Try Now"
+    },
+    "forms": {
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "username": "Username",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phoneNumber": "Phone Number",
+        "message": "Message",
+        "subject": "Subject",
+        "required": "This field is required",
+        "invalidEmail": "Invalid email address",
+        "passwordMismatch": "Passwords do not match",
+        "minLength": "Minimum {{count}} characters required",
+        "maxLength": "Maximum {{count}} characters allowed"
+    },
+    "alerts": {
+        "success": "Success!",
+        "error": "Error!",
+        "warning": "Warning!",
+        "info": "Information",
+        "loading": "Loading...",
+        "saving": "Saving...",
+        "deleting": "Deleting...",
+        "uploading": "Uploading...",
+        "processing": "Processing...",
+        "pleaseWait": "Please wait..."
+    },
+    "system": {
+        "pageNotFound": "Page Not Found",
+        "goHome": "Go to Home",
+        "somethingWentWrong": "Something went wrong",
+        "tryAgain": "Try Again",
+        "noResults": "No results found",
+        "noData": "No data available",
+        "offline": "You are offline",
+        "online": "You are online",
+        "networkError": "Network error occurred",
+        "serverError": "Server error occurred",
+        "unauthorized": "Unauthorized access",
+        "forbidden": "Access forbidden",
+        "loginSuccess": "Login Successful!",
+        "logoutSuccess": "Logout Successful!"
+    },
+    "accessibility": {
+        "skipToContent": "Skip to main content",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "toggleTheme": "Toggle theme",
+        "changeLanguage": "Change language",
+        "playAudio": "Play audio",
+        "pauseAudio": "Pause audio",
+        "stopAudio": "Stop audio",
+        "increaseTextSize": "Increase text size",
+        "decreaseTextSize": "Decrease text size",
+        "highContrast": "High contrast mode",
+        "screenReader": "Screen reader mode"
+    },
+    "home": {
+        "hero": {
+            "title": "Explore Neurodiversity",
+            "subtitle": "Discover resources and games tailored for unique minds."
+        },
+        "about": {
+            "badge": "About Neurodiversity",
+            "title": "What is Neurodiversity?",
+            "description": "Neurodiversity celebrates the natural variations in human brain function and behavior, recognizing conditions like ADHD, autism, and dyslexia as differences rather than deficits.",
+            "learnMore": "Learn More"
+        },
+        "features": {
+            "badge": "Platform Features",
+            "title": "Our Features",
+            "subtitle": "Discover powerful tools designed to enhance your learning journey",
+            "brainGames": "Brain Games",
+            "brainGamesDesc": "Enhance cognitive abilities through fun challenges",
+            "courses": "Courses",
+            "coursesDesc": "Structured learning paths for all levels",
+            "community": "Community",
+            "communityDesc": "Connect with others on similar journeys",
+            "tracking": "Tracking",
+            "trackingDesc": "Monitor your progress and growth"
+        },
+        "courses": {
+            "badge": "Learning Paths",
+            "title": "Featured Courses",
+            "viewAll": "View All",
+            "continue": "Continue",
+            "progress": "Progress",
+            "complete": "Complete",
+            "inProgress": "In Progress",
+            "autoScrolling": "Auto-scrolling",
+            "items": {
+                "understandingAdhd": "Understanding ADHD",
+                "dyslexiaStrategies": "Dyslexia Strategies",
+                "autismAwareness": "Autism Awareness",
+                "sensoryIntegration": "Sensory Integration",
+                "timeManagementAdhd": "Time Management for ADHD",
+                "ocdCoping": "OCD Coping Mechanisms",
+                "bipolarBasics": "Bipolar Disorder Basics",
+                "sensoryProcessing": "Sensory Processing Skills",
+                "downSyndrome": "Down Syndrome Learning Strategies",
+                "anatomy": "Anatomy and Physiology",
+                "pharmacology": "Pharmacology Basics",
+                "medicalEthics": "Medical Ethics and Professionalism",
+                "diseasePatho": "Disease Pathophysiology"
+            }
+        },
+        "games": {
+            "badge": "Interactive Games",
+            "title": "Featured Games",
+            "viewAll": "View All",
+            "playNow": "Play Now",
+            "autoScrolling": "Auto-scrolling",
+            "items": {
+                "memoryMatch": {
+                    "title": "Memory Match",
+                    "description": "Test your memory with this fun card-matching game!"
+                },
+                "wordPuzzle": {
+                    "title": "Word Puzzle",
+                    "description": "Solve challenging word puzzles to boost vocabulary."
+                },
+                "speedReading": {
+                    "title": "Speed Reading",
+                    "description": "Improve your reading speed and comprehension."
+                },
+                "patternMaster": {
+                    "title": "Pattern Master",
+                    "description": "Spot the patterns in this brain-teasing challenge."
+                },
+                "emotionMatch": {
+                    "title": "Emotion Match",
+                    "description": "Match emotions to improve emotional intelligence."
+                },
+                "focusTrainer": {
+                    "title": "Focus Trainer",
+                    "description": "Enhance your concentration with this trainer."
+                },
+                "mathBlitz": {
+                    "title": "Math Blitz",
+                    "description": "Quick math challenges to sharpen your skills."
+                },
+                "typingFury": {
+                    "title": "Typing Fury",
+                    "description": "Test and improve your typing speed."
+                }
+            }
+        },
+        "stats": {
+            "badge": "Platform Statistics",
+            "title": "Our Impact",
+            "subtitle": "Join thousands of learners on their neurodiversity journey",
+            "totalUsers": "Total Users",
+            "courses": "Courses",
+            "satisfaction": "Satisfaction"
+        },
+        "cta": {
+            "badge": "Get Started Today",
+            "title": "Ready to Get Started?",
+            "subtitle": "Join thousands of users improving their cognitive skills through our platform. Start your journey towards understanding and embracing neurodiversity today.",
+            "startNow": "Start Now"
+        },
+        "contact": {
+            "badge": "Contact Us",
+            "title": "Get in Touch",
+            "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+            "email": "Email",
+            "emailLabel": "Email Address",
+            "emailPlaceholder": "your@email.com",
+            "message": "Message",
+            "messageLabel": "Your Message",
+            "messagePlaceholder": "How can we help you?",
+            "send": "Send Message",
+            "sending": "Sending...",
+            "success": "Message sent successfully!",
+            "successMessage": "We have received your message and will get back to you soon.",
+            "error": "Failed to send message. Please try again.",
+            "errorMessage": "There was an error sending your message. Please try again.",
+            "infoTitle": "Contact Information",
+            "phone": "Phone",
+            "phoneNumber": "+1 (555) 123-4567",
+            "address": "Address",
+            "addressText": "123 Gaming Street, Tech City",
+            "messageSent": "Message Sent!",
+            "messageFailed": "Error Sending Message",
+            "close": "Close",
+            "welcome": "Welcome, {{name}}!",
+            "welcomeMessage": "We're excited to have you join our community of learners and gamers.",
+            "getStarted": "Get Started"
+        }
+    },
+    "daily": {
+        "header": {
+            "title": "Daily Activities"
+        },
+        "stats": {
+            "completed": "Completed",
+            "totalTasks": "Total Tasks",
+            "streak": "Streak"
+        },
+        "filters": {
+            "type": "Type:",
+            "status": "Status:",
+            "all": "All",
+            "work": "Work",
+            "personal": "Personal",
+            "learning": "Learning",
+            "health": "Health",
+            "creative": "Creative",
+            "pending": "Pending",
+            "completedStatus": "Completed",
+            "progress": "% Complete"
+        },
+        "taskList": {
+            "title": "Today's Tasks",
+            "taskCount": "{{count}} of {{total}} tasks",
+            "noTasks": "No tasks found",
+            "noFilteredTasks": "No {{status}} {{type}} tasks found",
+            "addFirstTask": "Add your first task to get started!",
+            "adjustFilters": "Try adjusting your filters or add a new task!",
+            "clearFilters": "Clear Filters",
+            "priority": "{{level}} Priority",
+            "scheduled": "Scheduled",
+            "done": "Done!"
+        },
+        "form": {
+            "createTitle": "Create New Task",
+            "editTitle": "Edit Task",
+            "titlePlaceholder": "Task title...",
+            "titleLabel": "Title",
+            "durationPlaceholder": "e.g., 30 min, 2 hours...",
+            "durationLabel": "Duration",
+            "categoryLabel": "Category",
+            "selectType": "Select type...",
+            "priorityLabel": "Priority",
+            "low": "Low",
+            "medium": "Medium",
+            "high": "High",
+            "descriptionPlaceholder": "Describe your task in detail...",
+            "descriptionLabel": "Description",
+            "reminderLabel": "Reminder Time (Required)",
+            "reminderHelp": "Required: Set a time to receive automatic email reminders for this task",
+            "addTask": "Add Task",
+            "updateTask": "Update Task",
+            "cancel": "Cancel"
+        },
+        "alerts": {
+            "pastTime": "Please select a future time for the reminder!",
+            "reminderSent": "Task reminder sent successfully!",
+            "reminderFailed": "Failed to send reminder",
+            "reminderError": "Failed to send task reminder. Please try again.",
+            "reminderScheduled": "Reminder scheduled for {{time}}! You'll receive an email at the specified time."
+        }
+    },
+    "community": {
+        "header": {
+            "title": "NueroConnect",
+            "searchPlaceholder": "Search amazing content...",
+            "home": "Home",
+            "notifications": "Notifications",
+            "create": "Create"
+        },
+        "createPost": {
+            "title": "Create Post",
+            "placeholder": "What's inspiring you today? Share your thoughts...",
+            "button": "Post",
+            "image": "Image",
+            "video": "Video",
+            "file": "File"
+        },
+        "post": {
+            "like": "Like",
+            "comment": "Comment",
+            "share": "Share",
+            "comments": "Comments",
+            "addComment": "Add a comment...",
+            "postComment": "Post",
+            "noPosts": "No posts yet. Be the first to share!",
+            "delete": "Delete",
+            "public": "Public"
+        },
+        "notifications": {
+            "title": "Notifications",
+            "empty": "No notifications yet",
+            "liked": "liked your post",
+            "commented": "commented on your post",
+            "shared": "shared your post"
+        },
+        "messages": {
+            "title": "Messages"
+        },
+        "profile": {
+            "logout": "Logout",
+            "about": "About",
+            "noBio": "No description provided.",
+            "connections": "Connections",
+            "yourPosts": "Your Posts",
+            "noPosts": "You haven't posted anything yet."
+        },
+        "time": {
+            "y": "y",
+            "mo": "mo",
+            "d": "d",
+            "h": "h",
+            "m": "m",
+            "s": "s"
+        },
+        "errors": {
+            "login": "Please log in to access the platform",
+            "loginBtn": "Login"
+        }
+    },
+    "games": {
+        "hero": {
+            "title": "Level Up Your Brain!",
+            "subtitle": "Embark on an epic cognitive adventure! Complete challenges, earn achievements, and climb the leaderboards while boosting your brainpower."
+        },
+        "stats": {
+            "brainGames": "Brain Games",
+            "activePlayers": "Active Players",
+            "gameRecords": "Game Records"
+        },
+        "buttons": {
+            "startJourney": "Start Your Journey",
+            "viewLeaderboard": "View Leaderboard",
+            "play": "PLAY"
+        },
+        "common": {
+            "submitScore": "Submit Score",
+            "resetScore": "Reset Score",
+            "scoreLabel": "Score: {{score}}"
+        },
+        "categories": {
+            "all": "All Games",
+            "memory": "Memory",
+            "puzzle": "Puzzle",
+            "brain": "Brain Training",
+            "logic": "Logic",
+            "skill": "Skill",
+            "social": "Social"
+        },
+        "gamesAvailable": "epic challenges await you!",
+        "yourProgress": "Your Progress",
+        "level": "Level",
+        "achievements": {
+            "title": "Your Achievements",
+            "noAchievements": "No achievements yet. Start playing games to unlock them!"
+        },
+        "gameDetails": {
+            "duration": "5-10 min"
+        },
+        "emotionMatching": {
+            "title": "Emotion Matching",
+            "question": "Which emotion is this?",
+            "emotions": {
+                "Happy": "Happy",
+                "Sad": "Sad",
+                "Angry": "Angry",
+                "Scared": "Scared"
+            },
+            "correct": "✅ Correct! Well done! 🎉",
+            "incorrect": "❌ Try again! 😕",
+            "score": "Score: {{score}}",
+            "newEmotion": "New Emotion 🔄"
+        },
+        "focusTrainer": {
+            "title": "Focus Trainer",
+            "memorize": "Memorize this number:",
+            "timer": "You have {{seconds}} seconds.",
+            "inputPlaceholder": "Enter number...",
+            "submit": "Submit",
+            "correct": "Correct! 🎯",
+            "incorrect": "Try again! ❌"
+        },
+        "patternRecognition": {
+            "title": "Cosmic Pattern Challenge",
+            "instruction": "Match the celestial sequence!",
+            "score": "Score: {{score}}",
+            "correct": "Well Done! ✅",
+            "incorrect": "Incorrect! Try Again 🔄"
+        },
+        "speedReading": {
+            "title": "Speed Reading",
+            "startReading": "Start Reading",
+            "finishedReading": "Finished Reading",
+            "clickToStart": "Click \"Start Reading\" to begin",
+            "readingTime": "Reading time: {{time}}",
+            "time": "Time: {{time}}",
+            "reportTitle": "Final Analysis Report",
+            "reportTime": "📊 **Reading Time**: {{time}}",
+            "reportWpm": "📝 **Words Per Minute (WPM)**: {{wpm}}",
+            "analysis": {
+                "fast": "Fast Reading: You are processing information quickly. This is typical of individuals with strong fluency, but can be seen in neurodiverse individuals who thrive on fast-paced activities.",
+                "average": "Average Reading: Your reading speed is in the normal range. If you have ADHD or mild dyslexia, this pace can still indicate good comprehension and focus.",
+                "slow": "Slow Reading: This suggests a need for more time with text. If you have dyslexia or attention difficulties, you might take longer to read and process each word.",
+                "verySlow": "Very Slow Reading: You may struggle with attention or decoding. Individuals with ADHD or dyslexia often read slower, taking extra time to comprehend text."
+            }
+        },
+        "wordPuzzle": {
+            "title": "Word Puzzle",
+            "hint": "Hint: {{hint}}",
+            "placeholder": "Your answer...",
+            "submit": "Submit Answer",
+            "gameOver": "Game Over!",
+            "completed": "You completed all 5 questions.",
+            "finalResults": "Final Results:",
+            "wrongAnswers": "Wrong Answers:",
+            "noWrongAnswers": "No wrong answers.",
+            "word": "Word: {{word}}",
+            "yourAnswer": "Your Answer: {{answer}}",
+            "analysis": {
+                "summary": "Total Time: {{totalTime}}s (Average per question: {{avgTime}}s)\nScore: {{score}}/5\nSpeed: {{speed}}",
+                "speed": {
+                    "fast": "Fast",
+                    "average": "Average",
+                    "slow": "Slow"
+                },
+                "neurodivergent": "Possible neurodivergence indicators: Slower processing and difficulty with recall, possibly related to focus or memory challenges.",
+                "normal": "Normal performance range. No indicators of neurodivergence based on timing and accuracy."
+            }
+        },
+        "memoryMatch": {
+            "title": "Memory Match",
+            "score": "Score: {{score}} matches",
+            "won": "Congratulations! You won!",
+            "analysis": {
+                "great": "Great job! You have excellent memory and quick recall speed.",
+                "good": "Good performance! You have a good grasp, but a little improvement in recall speed could help.",
+                "practice": "You may need more practice. Consider working on improving recall speed and focus.",
+                "stats": "Total Time: {{time}} seconds\\nSpeed: {{speed}}\\nMatches: {{matches}}/6\\nFinal Score: {{finalScore}}\\n\\n"
+            }
+        },
+        "handDraw": {
+            "title": "Hand Draw Tracer",
+            "instruction": "Trace the letters by following the blue dotted lines!",
+            "currentLetter": "Current Letter",
+            "accuracy": "Accuracy",
+            "progress": "Progress",
+            "readyTitle": "Ready to Practice?",
+            "startTracing": "Start Tracing",
+            "complete": "Complete!",
+            "averageAccuracy": "Average Accuracy: {{accuracy}}%",
+            "practiceAgain": "Practice Again",
+            "clear": "Clear",
+            "nextLetter": "Next Letter",
+            "guide": "Follow the blue dotted lines to trace each letter. Start from the larger blue dot and follow the path. Your accuracy is calculated in real-time!",
+            "exit": "Press Esc or click the ✕ button to exit fullscreen",
+            "exitMobile": "Tap the ✕ button to exit fullscreen"
+        },
+        "scooped": {
+            "title": "SCOOP'D",
+            "instruction": "Catch the falling letters that match the target letter!",
+            "score": "Score",
+            "lives": "Lives",
+            "target": "Target",
+            "readyTitle": "Ready to Play?",
+            "controlsHand": "Move your hand in front of the camera to control the bucket!",
+            "controlsMouse": "Move your mouse to control the bucket and catch the target letters!",
+            "cameraLoading": "Initializing Camera...",
+            "disableHand": "Disable Hand Tracking",
+            "enableHand": "Enable Hand Tracking",
+            "startGame": "Start Game",
+            "paused": "Game Paused",
+            "resume": "Resume",
+            "gameOver": "Game Over!",
+            "finalScore": "Final Score: {{score}}",
+            "playAgain": "Play Again",
+            "pause": "Pause",
+            "reset": "Reset",
+            "disableCamera": "Disable Camera",
+            "enableCamera": "Enable Camera",
+            "guideHand": "Move your hand left and right in front of the camera to control the bucket. Catch only the letters that match the target letter!",
+            "guideMouse": "Move your mouse left and right to control the bucket. Catch only the letters that match the target letter shown on the bucket. Wrong catches will cost you a life!",
+            "exit": "Press Esc or click the ✕ button to exit fullscreen"
+        }
+    },
+    "footer": {
+        "brand": "Empowering neurodivergent individuals through inclusive technology and community support.",
+        "quickLinks": "Quick Links",
+        "aboutUs": "About Us",
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contactUs": "Contact Us",
+        "newsletter": "Newsletter",
+        "emailPlaceholder": "Enter your email",
+        "subscribe": "Subscribe",
+        "madeWith": "Made with",
+        "forCommunity": "for the neurodivergent community"
+    },
+    "language": {
+        "selectLanguage": "Select Language",
+        "currentLanguage": "Current Language",
+        "changeLanguage": "Change Language",
+        "translating": "Translating...",
+        "translationFailed": "Translation failed",
+        "autoTranslate": "Auto-translate content",
+        "originalLanguage": "Show original language"
+    }
+}

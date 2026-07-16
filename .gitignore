@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+.venv
+__pycache__
+*.pyc
+*.pyo
+
+# Build outputs
+dist
+dist-electron
+.vite
+
+# RAG generated files
+src/aiagentrag/chroma_db
+src/aiagentrag/backend_output.log
+*.pkl
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+
+# Refact AI files
+.refact
+
+# Log files
+*.log
+
+# Temporary files
+test_rag_init.py
+y

@@ -1,0 +1,77 @@
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-dyslexic: 'OpenDyslexic', system-ui, -apple-system, sans-serif;
+  --bg-soft: #f5f5f5;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-dyslexic);
+  @apply bg-neutral-100 text-gray-800;
+  scroll-behavior: smooth;
+  /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  touch-action: pan-y;
+  /* Vertical scrolling priority */
+  overscroll-behavior-y: contain;
+  /* Prevent overscroll bounce */
+}
+
+.hero-section {
+  will-change: transform;
+  /* Hint to browser for optimization */
+  transform: translateZ(0);
+  /* Force GPU acceleration */
+  backface-visibility: hidden;
+  /* Prevent flickering */
+}
+
+/* Improve readability for dyslexic users */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply leading-relaxed;
+  letter-spacing: 0.5px;
+}
+
+/* Soft focus states for better accessibility */
+:focus {
+  @apply outline-2 outline-offset-2 outline-gray-400;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom button styles with softer colors */
+.btn-soft {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors;
+  @apply px-4 py-2 rounded-lg;
+}
