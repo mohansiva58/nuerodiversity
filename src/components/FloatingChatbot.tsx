@@ -33,6 +33,11 @@ export const FloatingChatbot: React.FC = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const quickPrompts = [
+    "What is autism?",
+    "How can I support learning at home?",
+    "What is dyslexia?",
+  ];
 
   // Initialize RAG service with health checks
   useEffect(() => {
@@ -137,8 +142,8 @@ export const FloatingChatbot: React.FC = () => {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-purple-500 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl flex items-center justify-center z-40 transition-all hover:scale-110"
-            title="Open AI Assistant"
+            className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-cyan-500 via-sky-500 to-indigo-500 text-white rounded-full shadow-lg hover:shadow-xl flex items-center justify-center z-40 transition-all hover:scale-110"
+            title="Open Hiki"
           >
             <MessageCircle size={24} />
           </motion.button>
@@ -153,16 +158,16 @@ export const FloatingChatbot: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed bottom-6 right-6 w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-gray-200 overflow-hidden"
+            className="fixed bottom-6 right-6 w-[24rem] h-[540px] bg-white/95 backdrop-blur-xl rounded-[1.75rem] shadow-2xl flex flex-col z-50 border border-slate-200 overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-500 to-blue-600 text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-slate-950 via-cyan-600 to-sky-500 text-white p-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <MessageCircle size={20} />
                 <div>
-                  <h3 className="font-semibold">AI Assistant</h3>
+                  <h3 className="font-semibold">Hiki</h3>
                   <p className="text-xs opacity-90">
-                    {connected ? "🟢 Connected" : "🔴 Offline"}
+                    {connected ? "🟢 Ready" : "🔴 Offline"}
                   </p>
                 </div>
               </div>
@@ -189,12 +194,24 @@ export const FloatingChatbot: React.FC = () => {
             {/* Messages Area */}
             {!isMinimized && (
               <>
-                <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/70">
                   {messages.length === 0 && (
-                    <div className="h-full flex items-center justify-center text-center">
-                      <div className="text-gray-400">
+                    <div className="h-full flex items-center justify-center text-center px-3">
+                      <div className="text-slate-500">
                         <MessageCircle size={32} className="mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">Start a conversation</p>
+                        <p className="text-sm font-medium">Hi, I’m Hiki</p>
+                        <p className="text-xs mt-1">Ask anything about the documents.</p>
+                        <div className="flex flex-wrap justify-center gap-2 mt-4">
+                          {quickPrompts.map((prompt) => (
+                            <button
+                              key={prompt}
+                              onClick={() => setInput(prompt)}
+                              className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 transition"
+                            >
+                              {prompt}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -211,8 +228,8 @@ export const FloatingChatbot: React.FC = () => {
                       <div
                         className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                           msg.type === "user"
-                            ? "bg-blue-500 text-white rounded-br-none"
-                            : "bg-gray-100 text-gray-900 rounded-bl-none"
+                            ? "bg-slate-900 text-white rounded-br-none"
+                            : "bg-white text-slate-900 rounded-bl-none border border-slate-200"
                         }`}
                       >
                         <p className="whitespace-pre-wrap break-words">
@@ -313,22 +330,22 @@ export const FloatingChatbot: React.FC = () => {
                 </div>
 
                 {/* Input Area */}
-                <div className="border-t border-gray-200 p-3 bg-gray-50">
+                <div className="border-t border-slate-200 p-3 bg-white">
                   <div className="flex gap-2">
                     <textarea
                       ref={inputRef}
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      placeholder="Ask something..."
-                      className="flex-1 resize-none border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      placeholder="Ask Hiki something..."
+                      className="flex-1 resize-none border border-slate-300 rounded-2xl px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none bg-white"
                       rows={1}
                       disabled={loading || !connected}
                     />
                     <button
                       onClick={sendMessage}
                       disabled={loading || !input.trim() || !connected}
-                      className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
+                      className="bg-slate-900 text-white p-2 rounded-2xl hover:bg-slate-800 disabled:bg-slate-400 transition-colors"
                       title="Send message"
                     >
                       <Send size={16} />
