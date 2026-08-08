@@ -70,16 +70,16 @@ class Config:
     chroma_path: str = "chroma_db"
     chunk_size: int = 600
     chunk_overlap: int = 80
-    embedding_model: str = "BAAI/bge-small-en-v1.5"
-    embedding_provider: str = "huggingface"  # "huggingface", "cohere", or "openai"
-    llm_provider: str = "ollama"  # "ollama" or "groq"
+    embedding_model: str = "embed-english-v3.0"
+    embedding_provider: str = "cohere"  # "huggingface", "cohere", or "openai"
+    llm_provider: str = "groq"  # "ollama" or "groq"
     ollama_model: str = "mistral"
     ollama_base_url: str = "http://localhost:11434"
     groq_model: str = "llama-3.1-8b-instant"
     top_k_retrieval: int = 7
     temperature: float = 0.4
     max_tokens: int = 400
-    port: int = 8000
+    port: int = 10000
     host: str = "0.0.0.0"
     
     def __post_init__(self):
@@ -666,15 +666,16 @@ async def lifespan(app: FastAPI):
         runtime_config = Config(
             pdf_folder=os.getenv("PDF_FOLDER", "pdfs"),
             chroma_path=os.getenv("CHROMA_PATH", "chroma_db"),
-            embedding_provider=os.getenv("EMBEDDING_PROVIDER", "huggingface"),  # "cohere", "openai", or "huggingface"
-            llm_provider=os.getenv("LLM_PROVIDER", "ollama"),
+            embedding_model=os.getenv("EMBEDDING_MODEL", "embed-english-v3.0"),
+            embedding_provider=os.getenv("EMBEDDING_PROVIDER", "cohere"),  # "cohere", "openai", or "huggingface"
+            llm_provider=os.getenv("LLM_PROVIDER", "groq"),
             ollama_model=os.getenv("OLLAMA_MODEL", "mistral"),
             ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
             groq_model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
             max_tokens=int(os.getenv("MAX_TOKENS", "300")),
             temperature=float(os.getenv("TEMPERATURE", "0.3")),
             top_k_retrieval=int(os.getenv("TOP_K", "7")),
-            port=int(os.getenv("PORT", "8000"))
+            port=int(os.getenv("PORT", "10000"))
         )
         app.state.config = runtime_config
         logger.info("✓ RAG config loaded")
@@ -758,7 +759,11 @@ async def root_head():
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "ready": agent is not None}
+    return {
+        "status": "ok",
+        "server_ready": True,
+        "rag_ready": bool(agent is not None and initialized),
+    }
 
 
 @app.head("/health")
@@ -897,7 +902,7 @@ def run_api_server(config: Config):
     """Start API server"""
     logger.info(f"📍 Server: http://localhost:{config.port}")
     logger.info(f"📚 Docs: http://localhost:{config.port}/docs")
-    uvicorn.run(app, host=config.host, port=config.port, log_level="info", lifespan="on")
+    uvicorn.run(app, host="0.0.0.0", port=config.port, log_level="info", lifespan="on")
 
 def run_tests(config: Config):
     """Run performance tests"""
@@ -957,7 +962,7 @@ def main():
     parser = argparse.ArgumentParser(description="Unified RAG Agent")
     parser.add_argument("--test", action="store_true", help="Run performance tests")
     parser.add_argument("--cli", action="store_true", help="Interactive CLI mode")
-    parser.add_argument("--port", type=int, default=8000, help="API port (default: 8000)")
+    parser.add_argument("--port", type=int, default=10000, help="API port (default: 10000)")
     args = parser.parse_args()
     
     config = Config(port=args.port)

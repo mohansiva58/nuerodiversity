@@ -3,11 +3,10 @@ fastapi
 uvicorn
 pydantic
 groq
+cohere
 python-dotenv
 pypdf
 tqdm
 numpy
 langchain-text-splitters
-langchain-huggingface
 chromadb
-sentence-transformers
