@@ -1,23 +1,28 @@
-# RAG Backend - Setup Required ⚠️
+# RAG Backend - Free Local Setup ⚠️
 
 ## What's Happening
 Your frontend (http://localhost:3000) is trying to reach backend (http://localhost:8000), but getting CORS errors because:
 
 1. **Backend might not be running** → CORS headers never sent
-2. **GROQ_API_KEY not set** → Backend crashes on startup
+2. **Ollama not running** → Backend cannot generate answers locally
 3. **PDFs folder missing** → Backend fails during initialization
 
 ---
 
 ## Quick Setup (3 Steps)
 
-### Step 1️⃣: Set Your Groq API Key
-1. Go to: https://console.groq.com
-2. Get a free API key
-3. Edit `src/aiagentrag/.env`:
+### Step 1️⃣: Install and Start Ollama
+1. Install Ollama: https://ollama.com
+2. Start the service:
 
-```env
-GROQ_API_KEY=gsk_your_actual_key_here
+```bash
+ollama serve
+```
+
+3. Pull a free model:
+
+```bash
+ollama pull mistral
 ```
 
 ### Step 2️⃣: Create PDFs Folder (Even If Empty)
@@ -35,7 +40,7 @@ python rag_unified.py
 ```
 INFO: Uvicorn running on http://0.0.0.0:8000
 ✓ Embeddings ready
-✓ Groq ready (mixtral-8x7b-32768)  ← This means it worked!
+✓ Ollama ready (mistral at http://localhost:11434)  ← This means it worked!
 ✓ RAG Agent created
 ```
 
@@ -78,7 +83,7 @@ python rag_unified.py
 **Problem:** Backend might be crashing  
 **Solution:**
 1. Check backend terminal for errors
-2. Make sure GROQ_API_KEY is set in `.env`
+2. Make sure Ollama is running and `mistral` is pulled
 3. Make sure `pdfs/` folder exists
 4. Restart backend
 
@@ -105,8 +110,8 @@ Different ports = CORS required ✓
 
 ## Next Steps
 
-1. ✅ Set GROQ_API_KEY  
-2. ✅ Create pdfs/ folder  
+1. ✅ Start Ollama  
+2. ✅ Create `pdfs/` folder  
 3. ✅ Run backend  
 4. ✅ Test CORS  
 5. ✅ Use floating chatbot!

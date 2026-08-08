@@ -42,7 +42,10 @@ import numpy as np
 from tqdm import tqdm
 import pypdf
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import groq
+try:
+    import groq
+except ImportError:
+    groq = None
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
@@ -50,6 +53,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 import uvicorn
+import urllib.request
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -68,6 +72,9 @@ class Config:
     chunk_overlap: int = 80
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     embedding_provider: str = "huggingface"  # "huggingface", "cohere", or "openai"
+    llm_provider: str = "ollama"  # "ollama" or "groq"
+    ollama_model: str = "mistral"
+    ollama_base_url: str = "http://localhost:11434"
     groq_model: str = "llama-3.1-8b-instant"
     top_k_retrieval: int = 7
     temperature: float = 0.4
@@ -373,24 +380,34 @@ class VectorStore:
 
 
 class LLMGenerator:
-    """Groq LLM for generation"""
+    """Local Ollama generation by default, Groq as optional fallback"""
     
-    def __init__(self, model: str, temperature: float, max_tokens: int):
-        api_key = os.getenv("GROQ_API_KEY")
-        if not api_key:
-            raise ValueError(
-                "❌ GROQ_API_KEY not found!\n"
-                "Get a free API key from: https://console.groq.com\n"
-                "Then add to src/aiagentrag/.env:\n"
-                "  GROQ_API_KEY=your_key_here\n"
-                "Then restart the server."
-            )
-        
-        self.client = groq.Groq(api_key=api_key)
+    def __init__(self, model: str, temperature: float, max_tokens: int, provider: str = "ollama", base_url: str = "http://localhost:11434"):
+        self.provider = provider.lower().strip()
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
-        logger.info(f"✓ Groq ready ({model})")
+        self.base_url = base_url.rstrip("/")
+
+        if self.provider == "groq":
+            if groq is None:
+                raise ValueError("❌ groq package not installed. Install dependencies or switch to OLLAMA.")
+
+            api_key = os.getenv("GROQ_API_KEY")
+            if not api_key:
+                raise ValueError(
+                    "❌ GROQ_API_KEY not found!\n"
+                    "Get a free API key from: https://console.groq.com\n"
+                    "Then add to src/aiagentrag/.env:\n"
+                    "  GROQ_API_KEY=your_key_here\n"
+                    "Then restart the server."
+                )
+
+            self.client = groq.Groq(api_key=api_key)
+            logger.info(f"✓ Groq ready ({model})")
+        else:
+            self.client = None
+            logger.info(f"✓ Ollama ready ({model} at {self.base_url})")
     
     def generate(self, query: str, context: str = "") -> str:
         # STRICT: Require context for proper RAG
@@ -409,18 +426,41 @@ class LLMGenerator:
 📝 PARENT QUESTION: {query}
 
 📖 ANSWER (Use simple parent-friendly language):"""
-        
-        message = self.client.chat.completions.create(
-            model=self.model,
-            max_tokens=self.max_tokens,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=self.temperature
-        )
-        
-        answer = message.choices[0].message.content.strip()
+
+        if self.provider == "groq":
+            message = self.client.chat.completions.create(
+                model=self.model,
+                max_tokens=self.max_tokens,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=self.temperature
+            )
+
+            answer = message.choices[0].message.content.strip()
+        else:
+            payload = {
+                "model": self.model,
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt},
+                ],
+                "stream": False,
+                "options": {
+                    "temperature": self.temperature,
+                    "num_predict": self.max_tokens,
+                },
+            }
+            request = urllib.request.Request(
+                f"{self.base_url}/api/chat",
+                data=json.dumps(payload).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(request, timeout=120) as response:
+                response_payload = json.loads(response.read().decode("utf-8"))
+            answer = response_payload["message"]["content"].strip()
         
         # Validate that answer actually references the context
         # (simple check - real model should follow instructions)
@@ -472,7 +512,8 @@ class RAGAgent:
         self.chunker = DocumentChunker(config.chunk_size, config.chunk_overlap)
         self.embeddings = EmbeddingEngine(config.embedding_model, config.embedding_provider)
         self.vector_store = VectorStore(config.chroma_path)
-        self.llm = LLMGenerator(config.groq_model, config.temperature, config.max_tokens)
+        model = config.ollama_model if config.llm_provider == "ollama" else config.groq_model
+        self.llm = LLMGenerator(model, config.temperature, config.max_tokens, config.llm_provider, config.ollama_base_url)
         self.cache = ResponseCache()
         self.initialized = False
     
@@ -626,6 +667,9 @@ async def lifespan(app: FastAPI):
             pdf_folder=os.getenv("PDF_FOLDER", "pdfs"),
             chroma_path=os.getenv("CHROMA_PATH", "chroma_db"),
             embedding_provider=os.getenv("EMBEDDING_PROVIDER", "huggingface"),  # "cohere", "openai", or "huggingface"
+            llm_provider=os.getenv("LLM_PROVIDER", "ollama"),
+            ollama_model=os.getenv("OLLAMA_MODEL", "mistral"),
+            ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
             groq_model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
             max_tokens=int(os.getenv("MAX_TOKENS", "300")),
             temperature=float(os.getenv("TEMPERATURE", "0.3")),
@@ -707,9 +751,19 @@ async def general_exception_handler(request, exc):
 async def root():
     return {"name": "Unified RAG Agent", "version": "1.0.0"}
 
+
+@app.head("/")
+async def root_head():
+    return JSONResponse(content={}, status_code=200)
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "ready": agent is not None}
+
+
+@app.head("/health")
+async def health_head():
+    return JSONResponse(content={}, status_code=200)
 
 @app.get("/cors-test")
 async def cors_test():
