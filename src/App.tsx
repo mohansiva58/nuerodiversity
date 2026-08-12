@@ -22,6 +22,7 @@ const RAGChat = lazy(() => import('./pages/RAGChat'));  // ← RAG Chat is now m
 const Profile = lazy(() => import('./pages/Profile'));
 const Settings = lazy(() => import('./pages/Settings'));
 const About = lazy(() => import('./pages/About'));
+const Organs = lazy(() => import('./pages/Organs'));
 const Articles = lazy(() => import('./pages/Articles '));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -65,6 +66,7 @@ function AppContent() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/about" element={<About />} />
+              <Route path="/organs" element={<Organs />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
