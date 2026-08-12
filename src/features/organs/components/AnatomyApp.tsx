@@ -128,7 +128,7 @@ export function AnatomyApp() {
           <Search size={17} />
           <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search organs, topics…" />
         </label>
-        <button className="profile" aria-label="Open learner profile"><span>MA</span><ChevronDown size={15} /></button>
+        {/* <button className="profile" aria-label="Open learner profile"><span>MA</span><ChevronDown size={15} /></button> */}
         <button className="mobile-library-trigger" onClick={() => setMobileLibrary(true)} aria-label="Open organ library"><LibraryBig size={20} /></button>
       </header>
 
