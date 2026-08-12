@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Home, BookOpen, Gamepad2, Calendar, Users, Brain, Settings, FileText, MessageSquare, User, LogOut, CheckCircle } from 'lucide-react';
+import { Menu, X, Home, BookOpen, Gamepad2, Calendar, Users, Brain, Settings, FileText, MessageSquare, User, LogOut, CheckCircle, Microscope } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SpeechText } from '../components/speach';
 import { useAuth } from '../pages/AuthContext';
@@ -27,6 +27,7 @@ const Navbar = () => {
     { name: t('nav.daily'), href: '/daily', icon: Calendar },
     { name: t('nav.community'), href: '/community', icon: Users },
     { name: t('nav.assessment'), href: '/assessment', icon: Brain },
+    { name: t('nav.organs'), href: '/organs', icon: Microscope },
   ];
 
   const profileMenu = [
@@ -105,6 +106,7 @@ const Navbar = () => {
 
     { name: t('nav.assessment'), href: '/assessment', icon: Brain },
     { name: t('nav.settings'), href: '/settings', icon: Settings },
+    { name: t('nav.organs'), href: '/organs', icon: Microscope },
 
   ];
 
