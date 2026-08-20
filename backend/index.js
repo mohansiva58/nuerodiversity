@@ -4,6 +4,8 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const path = require('path');
 const redis = require('redis');
+const admin = require('firebase-admin');
+const { StreamChat } = require('stream-chat');
 
 // Load environment variables from .env.local in src directory if running from backend folder
 // Assuming current directory is backend/, so parent is root, then src/.env.local
@@ -17,10 +19,50 @@ const EMAIL_PASS = process.env.EMAIL_PASS;
 const REDIS_URL = process.env.REDIS_URL;
 const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
 const CACHE_TTL = Number(process.env.REDIS_CACHE_TTL || 300);
+const STREAM_API_KEY = process.env.STREAM_API_KEY;
+const STREAM_API_SECRET = process.env.STREAM_API_SECRET;
+const FIREBASE_SERVICE_ACCOUNT_JSON = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+const TOKEN_TTL_SECONDS = 60 * 60 * 24 * 30;
+
+const COMMUNITY_CHANNELS = [
+    {
+        id: 'community_general',
+        name: 'Community General',
+        description: 'Welcome! Introduce yourself and chat about anything.',
+        image: 'https://getstream.io/random_png/?name=Community+General',
+    },
+    {
+        id: 'community_learning',
+        name: 'Community Learning',
+        description: 'Share resources, tips and learning experiences.',
+        image: 'https://getstream.io/random_png/?name=Community+Learning',
+    },
+    {
+        id: 'community_support',
+        name: 'Community Support',
+        description: 'A safe space to ask for help and support each other.',
+        image: 'https://getstream.io/random_png/?name=Community+Support',
+    },
+];
 
 if (!EMAIL_USER || !EMAIL_PASS) {
     console.error('❌ Missing EMAIL_USER or EMAIL_PASS in environment variables.');
-    process.exit(1);
+    console.warn('Missing EMAIL_USER or EMAIL_PASS. Email endpoint will be disabled.');
+}
+
+if (!admin.apps.length && FIREBASE_SERVICE_ACCOUNT_JSON) {
+    try {
+        admin.initializeApp({
+            credential: admin.credential.cert(JSON.parse(FIREBASE_SERVICE_ACCOUNT_JSON)),
+        });
+        console.log('Firebase Admin initialized');
+    } catch (error) {
+        console.error('Failed to initialize Firebase Admin:', error);
+    }
+}
+
+if (!STREAM_API_KEY || !STREAM_API_SECRET) {
+    console.warn('Missing STREAM_API_KEY or STREAM_API_SECRET. Stream token endpoint will be disabled.');
 }
 
 const app = express();
@@ -60,7 +102,7 @@ let redisClient;
 })();
 
 // Create Nodemailer transporter
-const transporter = nodemailer.createTransport({
+const transporter = EMAIL_USER && EMAIL_PASS ? nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false, // true for 465, false for other ports
@@ -68,10 +110,13 @@ const transporter = nodemailer.createTransport({
         user: EMAIL_USER,
         pass: EMAIL_PASS,
     },
-});
+}) : null;
 
 async function verifyEmailTransport() {
     try {
+        if (!transporter) {
+            return { ok: false, message: 'SMTP is not configured' };
+        }
         await transporter.verify();
         return { ok: true, message: 'SMTP connection verified' };
     } catch (error) {
@@ -121,6 +166,87 @@ async function deleteCachedData(key) {
         console.error('Redis DELETE error:', error);
     }
 }
+
+function sanitizeName(value) {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim().slice(0, 100);
+    // eslint-disable-next-line no-control-regex
+    return trimmed.replace(/[\u0000-\u001F\u007F]/g, '');
+}
+
+function sanitizeImage(value) {
+    if (typeof value !== 'string') return undefined;
+    const trimmed = value.trim();
+    if (!/^https?:\/\/.+/.test(trimmed)) return undefined;
+    return trimmed.slice(0, 500);
+}
+
+async function verifyFirebaseUser(req) {
+    if (!admin.apps.length) {
+        const error = new Error('Firebase Admin is not configured.');
+        error.status = 503;
+        throw error;
+    }
+
+    const authorization = req.get('authorization') || '';
+    const match = authorization.match(/^Bearer (.+)$/i);
+
+    if (!match) {
+        const error = new Error('You must be signed in to access chat.');
+        error.status = 401;
+        throw error;
+    }
+
+    return admin.auth().verifyIdToken(match[1]);
+}
+
+app.post('/api/stream/token', async (req, res) => {
+    try {
+        if (!STREAM_API_KEY || !STREAM_API_SECRET) {
+            return res.status(503).json({ error: 'Stream Chat is not configured.' });
+        }
+
+        const claims = await verifyFirebaseUser(req);
+        const uid = claims.uid;
+        const { displayName, photoURL } = req.body || {};
+        const name = sanitizeName(claims.name || displayName) || 'NeuroHub User';
+        const image = sanitizeImage(claims.picture || photoURL);
+
+        const client = StreamChat.getInstance(STREAM_API_KEY, STREAM_API_SECRET);
+
+        await client.upsertUser({
+            id: uid,
+            role: 'user',
+            name,
+            ...(image ? { image } : {}),
+        });
+
+        for (const channel of COMMUNITY_CHANNELS) {
+            const chatChannel = client.channel('messaging', channel.id, {
+                created_by_id: uid,
+                name: channel.name,
+                description: channel.description,
+                image: channel.image,
+            });
+            await chatChannel.create();
+            await chatChannel.addMembers([uid]);
+        }
+
+        const expiresAt = Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS;
+        const token = client.createToken(uid, expiresAt);
+
+        return res.status(200).json({
+            token,
+            userId: uid,
+            user: { id: uid, name, image },
+        });
+    } catch (error) {
+        console.error('Stream token error:', error);
+        return res.status(error.status || 500).json({
+            error: error.message || 'Failed to create Stream chat token.',
+        });
+    }
+});
 
 // API Endpoints for User Data Caching
 app.get('/api/user-data/:userId', async (req, res) => {
@@ -280,6 +406,10 @@ app.post('/api/platform-stats', async (req, res) => {
 // Endpoint to send email
 app.post('/api/send-email', async (req, res) => {
     const { to, subject, message } = req.body;
+
+    if (!transporter) {
+        return res.status(503).json({ error: 'Email service is not configured' });
+    }
 
     if (!to || !subject || !message) {
         return res.status(400).json({ error: 'Missing required fields' });
