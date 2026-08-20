@@ -9,4 +9,4 @@ pypdf
 tqdm
 numpy
 langchain-text-splitters
-chromadb
+supabase
